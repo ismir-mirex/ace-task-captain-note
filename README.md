@@ -162,7 +162,7 @@ def inference(audio_path, output_path):
             chord_recognition(
                 os.path.join(audio_path, file),
                 os.path.join(output_path, file[:-4] + '.lab'),
-                chord_dict_name='ismir2017'
+                chord_dict_name='submission'
             )
 
 if __name__ == '__main__':
