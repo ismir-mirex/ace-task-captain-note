@@ -152,9 +152,10 @@ np.int = int
 from chord_recognition import chord_recognition
 import os
 from tqdm import tqdm
-audio_path = ...
-output_path = ...
-if __name__ == '__main__':
+
+year = 2025
+
+def inference(audio_path, output_path):
     os.makedirs(output_path, exist_ok=True)
     for file in tqdm(os.listdir(audio_path)):
         if file.endswith('.wav'):
@@ -163,6 +164,10 @@ if __name__ == '__main__':
                 os.path.join(output_path, file[:-4] + '.lab'),
                 chord_dict_name='ismir2017'
             )
+
+if __name__ == '__main__':
+    for folder in os.listdir(os.path.join('..', 'ace-data')):
+        inference(os.path.join('..', 'ace-data', folder), os.path.join('..', 'ace-output', str(year), folder, 'Chordino'))
 
 ```
 
