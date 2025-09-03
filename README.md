@@ -34,12 +34,13 @@ make LDFLAGS="-L$CONDA_PREFIX/lib -L$CONDA_PREFIX/x86_64-conda-linux-gnu/sysroot
 
 Baseline 1: Code Name ``Chordino``
 
-Download sonic annotator and (NNLS Chroma 1.1)[https://code.soundsoftware.ac.uk/projects/nnls-chroma/files]
+Download sonic annotator and [NNLS Chroma 1.1](https://code.soundsoftware.ac.uk/projects/nnls-chroma/files]
 
 ```python
 import os
 import subprocess
 from joblib import Parallel, delayed
+from tqdm import tqdm
 
 year = 2025
 
@@ -131,11 +132,10 @@ def inference(input_folder, output_folder):
     tasks = []
     for file in os.listdir(input_folder):
         if file.endswith('.wav'):
-            file_id = int(file[:-4])
             input_path = os.path.join(input_folder, file)
-            output_path = os.path.join(output_folder, f'{file_id:04}.lab')
+            output_path = os.path.join(output_folder, f'{file[:-4]}.lab')
             tasks.append([input_path, output_path])
-    Parallel(n_jobs=-1)(delayed(process_file)(task[0], task[1]) for task in tasks)
+    Parallel(n_jobs=-1)(delayed(process_file)(task[0], task[1]) for task in tqdm(tasks))
 
 if __name__ == '__main__':
     for folder in os.listdir(os.path.join('..', 'ace-data')):
