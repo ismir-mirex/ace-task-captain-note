@@ -34,7 +34,7 @@ make LDFLAGS="-L$CONDA_PREFIX/lib -L$CONDA_PREFIX/x86_64-conda-linux-gnu/sysroot
 
 Baseline 1: Code Name ``Chordino``
 
-Download sonic annotator and [NNLS Chroma 1.1](https://code.soundsoftware.ac.uk/projects/nnls-chroma/files]
+Download sonic annotator and [NNLS Chroma 1.1](https://code.soundsoftware.ac.uk/projects/nnls-chroma/files)
 
 ```python
 import os
